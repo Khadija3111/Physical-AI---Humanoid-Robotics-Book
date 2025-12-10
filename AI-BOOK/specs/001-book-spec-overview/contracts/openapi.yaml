@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API for Physical AI & Humanoid Robotics Book
+  version: 1.0.0
+  description: API for querying the Physical AI & Humanoid Robotics book content using a RAG (Retrieval Augmented Generation) chatbot. The chatbot uses Context 7 MCP for knowledge and content retrieval, without external API calls.
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /query:
+    post:
+      summary: Query the RAG chatbot
+      description: Sends a natural language query to the chatbot and retrieves an answer based on the book's content.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  example: "What are the core principles of ROS 2?"
+      responses:
+        '200':
+          description: Successful response with the chatbot's answer and relevant sources.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                    example: "ROS 2 is built around nodes, topics, services, and actions, providing a robust framework for robotic applications."
+                  sources:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - "Module 1 - Introduction to ROS 2"
+                      - "Module 1 - ROS 2 Architecture.md"
+        '400':
+          description: Invalid request or missing query.
+        '500':
+          description: Internal server error.
