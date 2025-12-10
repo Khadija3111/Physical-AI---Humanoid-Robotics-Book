@@ -11,7 +11,7 @@
         "@modelcontextprotocol/server-github"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "......."
       }
     }
     }
