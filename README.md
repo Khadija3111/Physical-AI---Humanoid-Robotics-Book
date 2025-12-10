@@ -102,7 +102,4 @@ I have **started implementing** Requirement #2:
 - OpenAI / Gemini APIs  
 - RAG 
 
----
-
-## 📦 Project Structure
 
