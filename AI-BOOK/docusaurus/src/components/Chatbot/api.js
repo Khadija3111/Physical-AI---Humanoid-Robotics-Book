@@ -1,4 +1,5 @@
 
+import { askChatbot } from './api';
 
 // AI-BOOK/docusaurus/src/components/Chatbot/api.js
 

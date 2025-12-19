@@ -1,24 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles.css';
-import { sendQuery } from './api';
-
-
-
 import { askChatbot } from "./api";
-
-async function handleSubmit() {
-  try {
-    const response = await askChatbot(userInput);
-    setAnswer(response.answer);
-  } catch (err) {
-    console.error(err);
-    setAnswer("Something went wrong");
-  }
-}
-
-
-
-
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -41,23 +23,24 @@ const Chatbot = () => {
   }, []);
 
   const handleSend = async () => {
-    if (input.trim() && !isLoading) {
-      const userMessage = { text: input, sender: 'user' };
-      setMessages([...messages, userMessage]);
-      setInput('');
-      setIsLoading(true);
+    if (!input.trim() || isLoading) return;
 
-      try {
-        const botResponse = await sendQuery(input, context);
-        const botMessage = { text: botResponse, sender: 'bot' };
-        setMessages(prevMessages => [...prevMessages, botMessage]);
-      } catch (error) {
-        const errorMessage = { text: 'Error: Could not get a response.', sender: 'bot' };
-        setMessages(prevMessages => [...prevMessages, errorMessage]);
-      } finally {
-        setIsLoading(false);
-        setContext(''); // Clear context after sending
-      }
+    const userMessage = { text: input, sender: 'user' };
+    setMessages([...messages, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const botResponse = await askChatbot(input); // <-- use askChatbot here
+      const botMessage = { text: botResponse?.response || botResponse?.answer || '', sender: 'bot' };
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      const errorMessage = { text: 'Error: Could not get a response.', sender: 'bot' };
+      setMessages(prev => [...prev, errorMessage]);
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+      setContext('');
     }
   };
 
@@ -69,10 +52,8 @@ const Chatbot = () => {
         </div>
       )}
       <div className="chatbot-messages">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`}>
-            {msg.text}
-          </div>
+        {messages.map((msg, idx) => (
+          <div key={idx} className={`message ${msg.sender}`}>{msg.text}</div>
         ))}
         {isLoading && <div className="message bot">...</div>}
       </div>
