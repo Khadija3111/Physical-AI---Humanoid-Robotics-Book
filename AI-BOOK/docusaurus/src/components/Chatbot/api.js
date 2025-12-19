@@ -4,7 +4,7 @@
 const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/agent/query`;
 
 // Function to send message to backend
-export async function askChatbot(message) {
+ async function askChatbot(message) {
   try {
     const res = await fetch(API_URL, {
       method: "POST",
