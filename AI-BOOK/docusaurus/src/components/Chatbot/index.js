@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles.css';
 import { askChatbot } from "./api";
 
+
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
