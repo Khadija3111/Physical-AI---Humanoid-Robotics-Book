@@ -1,6 +1,3 @@
-
-import { askChatbot } from './api';
-
 // AI-BOOK/docusaurus/src/components/Chatbot/api.js
 
 // Backend URL from env variable
@@ -28,10 +25,3 @@ export async function askChatbot(message) {
     return { error: error.message };
   }
 }
-
-
-
-
-
-
-
