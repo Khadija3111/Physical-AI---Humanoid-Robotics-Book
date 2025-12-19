@@ -2,6 +2,24 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles.css';
 import { sendQuery } from './api';
 
+
+
+import { askChatbot } from "./api";
+
+async function handleSubmit() {
+  try {
+    const response = await askChatbot(userInput);
+    setAnswer(response.answer);
+  } catch (err) {
+    console.error(err);
+    setAnswer("Something went wrong");
+  }
+}
+
+
+
+
+
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');

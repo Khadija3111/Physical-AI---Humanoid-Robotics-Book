@@ -1,24 +1,36 @@
-const API_URL = 'http://127.0.0.1:8000';
 
-export const sendQuery = async (query, context = null) => {
+
+// AI-BOOK/docusaurus/src/components/Chatbot/api.js
+
+// Backend URL from env variable
+const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/agent/query`;
+
+// Function to send message to backend
+export async function askChatbot(message) {
   try {
-    const response = await fetch(`${API_URL}/agent/query`, {
-      method: 'POST',
+    const res = await fetch(API_URL, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-     body: JSON.stringify({ query, selected_text: context }),
-
+      body: JSON.stringify({ query: message }),
     });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+    if (!res.ok) {
+      throw new Error(`Backend request failed with status ${res.status}`);
     }
 
-    const data = await response.json();
-    return data.response;
+    const data = await res.json();
+    return data;
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    throw error;
+    console.error("Error in askChatbot:", error);
+    return { error: error.message };
   }
-};
+}
+
+
+
+
+
+
+
