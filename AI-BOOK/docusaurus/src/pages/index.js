@@ -3,7 +3,10 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import Chatbot from '@site/src/components/Chatbot';
 import styles from './index.module.css';
+
+
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -35,6 +38,7 @@ export default function Home() {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
+      <Chatbot />
     </Layout>
   );
 }

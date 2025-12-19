@@ -1,7 +1,9 @@
+
 #!/usr/bin/env bash
 
 # Consolidated prerequisite checking script
 #
+
 # This script provides unified prerequisite checking for Spec-Driven Development workflow.
 # It replaces the functionality previously spread across multiple scripts.
 #

@@ -27,7 +27,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'fkhadija', // Usually your GitHub org/user name.
+  organizationName: 'khadija', // Usually your GitHub org/user name.
   projectName: 'Physical AI & Humanoid Robotics BOOK', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -82,7 +82,6 @@ const config = {
       },
       navbar: {
         title: 'Physical AI & Humanoid Robotics', // Consistent with main title
-        style: 'primary', // makes navbar color consistent
         items: [
           {
             type: 'docSidebar',
@@ -101,7 +100,6 @@ const config = {
   ]
 ],
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Docs',

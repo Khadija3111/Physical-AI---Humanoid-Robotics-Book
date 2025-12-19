@@ -1,4 +1,7 @@
-# Gemini CLI Rules
+# Gemini CLi rules
+
+
+ Rules
 
 This file is generated during init for the selected agent.
 

@@ -46,7 +46,6 @@ else
     # Create a basic plan file if template doesn't exist
     touch "$IMPL_PLAN"
 fi
-
 # Output results
 if $JSON_MODE; then
     printf '{"FEATURE_SPEC":"%s","IMPL_PLAN":"%s","SPECS_DIR":"%s","BRANCH":"%s","HAS_GIT":"%s"}\n' \

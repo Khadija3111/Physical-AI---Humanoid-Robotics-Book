@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ok #!/usr/bin/env bash
 
 # Update agent context files with information from plan.md
 #

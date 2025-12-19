@@ -6,28 +6,34 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #1d1d1d;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #007BFF;
+  --ifm-color-primary-dark: #0069d9;
+  --ifm-color-primary-darker: #0062cc;
+  --ifm-color-primary-darkest: #004c9e;
+  --ifm-color-primary-light: #3394ff;
+  --ifm-color-primary-lighter: #4da3ff;
+  --ifm-color-primary-lightest: #80bfff;
+  --ifm-background-color: #F5F5F5;
+  --ifm-font-color-base: #333333;
+  --ifm-navbar-background-color: #C5C7BC; /* Updated for light mode */
+  --ifm-footer-background-color: #C5C7BC; /* Updated for light mode */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-background-color: #1d1d1d;
-  --ifm-font-color-base: white;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #1d1d1d;
+  --ifm-color-primary: #007BFF;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
+  --ifm-background-color: #121212;
+  --ifm-font-color-base: #FFFFFF;
+  --ifm-navbar-background-color: #222831; /* Updated for dark mode */
+  --ifm-footer-background-color: #222831; /* Updated for dark mode */
   --docusaurus-highlighted-code-line-bg: rgba(235, 235, 235, 0.421);
 }
 
@@ -43,18 +49,7 @@
 .navbar {
   position: relative;
   z-index: 1000; /* High z-index to ensure it stays on top */
-}
-[data-theme='dark'] .footer {
-  background-color: #1d1d1d;
-  color: #f5f5f5;
-}
-
-[data-theme='dark'] .footer a {
-  color: #32d8b4;
-}
-
-[data-theme='dark'] .footer a:hover {
-  color: #29d5b0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 

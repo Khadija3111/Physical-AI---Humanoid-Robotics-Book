@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: RAG Agent API
+  version: 1.0.0
+  description: API for querying the RAG agent.
+paths:
+  /agent/query:
+    post:
+      summary: Query the RAG agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The user's question.
+                context:
+                  type: string
+                  description: Optional context for the query.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: The agent's response.
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error

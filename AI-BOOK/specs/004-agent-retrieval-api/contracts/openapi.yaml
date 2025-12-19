@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Agent Retrieval API
+  version: 1.0.0
+  description: API for interacting with the retrieval-enabled agent, providing global and selected-text search capabilities.
+servers:
+  - url: /
+    description: Local development server
+
+paths:
+  /ask:
+    post:
+      summary: Ask a question with global book content retrieval
+      operationId: askGlobal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalQuery'
+      responses:
+        '200':
+          description: Successful response from the agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /ask/selected:
+    post:
+      summary: Ask a question with selected-text retrieval from book content
+      operationId: askSelected
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedQuery'
+      responses:
+        '200':
+          description: Successful response from the agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    GlobalQuery:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The user's question or prompt.
+          example: "What is the main topic of the book?"
+
+    SelectedQuery:
+      type: object
+      required:
+        - query
+        - context
+      properties:
+        query:
+          type: string
+          description: The user's question or prompt.
+          example: "What does this section explain?"
+        context:
+          type: string
+          description: A specific text snippet or context from the book to focus retrieval on.
+          example: "The role of inverse kinematics in robot arm control."
+
+    AgentResponse:
+      type: object
+      required:
+        - answer
+      properties:
+        answer:
+          type: string
+          description: The agent's generated answer.
+          example: "The main topic of the book is Physical AI and Humanoid Robotics."
+        sources:
+          type: array
+          description: List of source documents or snippets used to formulate the answer.
+          items:
+            type: string
+            example: "Chapter 3, Section 2: Introduction to Inverse Kinematics"
