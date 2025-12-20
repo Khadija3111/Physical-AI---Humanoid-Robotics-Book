@@ -1,7 +1,7 @@
 // AI-BOOK/docusaurus/src/components/Chatbot/api.js
 
 // Backend URL from env variable
-const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/agent/query`;
+const API_URL = "https://khadija222-aibook-backend.hf.space/agent/query"
 
 // Function to send message to backend
  async function askChatbot(message) {
