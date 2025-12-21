@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+httpx
+qdrant-client
+cohere
+python-dotenv
+pydantic
+beautifulsoup4
+unstructured
+tenacity
+openai-agents
