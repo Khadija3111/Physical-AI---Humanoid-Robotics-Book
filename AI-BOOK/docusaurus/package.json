@@ -14,7 +14,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "test": "jest"
-  },
+},
   "dependencies": {
     "@docusaurus/core": "3.9.2",
     "@docusaurus/plugin-content-blog": "^3.9.2",
