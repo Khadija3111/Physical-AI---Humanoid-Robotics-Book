@@ -1,76 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
+import { askChatbot } from "./api"; // Relative import since both files are in the same directory
 import styles from './styles.css';
-import { askChatbot } from "./api";
 
+export default function Home() {
+  const [message, setMessage] = useState("");
+  const [chatLog, setChatLog] = useState([]);
+  const messagesEndRef = useRef(null);
 
-const Chatbot = () => {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
-  const [context, setContext] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
+  // Scroll to bottom whenever chatLog changes
   useEffect(() => {
-    const handleMouseUp = () => {
-      const selectedText = window.getSelection().toString();
-      if (selectedText) {
-        setContext(selectedText);
-      }
-    };
-
-    document.addEventListener('mouseup', handleMouseUp);
-    return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, []);
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatLog]);
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  if (!message.trim()) return;
 
-    const userMessage = { text: input, sender: 'user' };
-    setMessages([...messages, userMessage]);
-    setInput('');
-    setIsLoading(true);
+  setChatLog(prev => [...prev, { sender: "user", text: message }]);
+  const userMessage = message;
+  setMessage("");
 
-    try {
-      const botResponse = await askChatbot(input); // <-- use askChatbot here
-      const botMessage = { text: botResponse?.response || botResponse?.answer || '', sender: 'bot' };
-      setMessages(prev => [...prev, botMessage]);
-    } catch (error) {
-      const errorMessage = { text: 'Error: Could not get a response.', sender: 'bot' };
-      setMessages(prev => [...prev, errorMessage]);
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-      setContext('');
-    }
-  };
-
-  return (
-    <div className="chatbot-container">
-      {context && (
-        <div className="context-display">
-          <p>Context: "{context}"</p>
-        </div>
-      )}
-      <div className="chatbot-messages">
-        {messages.map((msg, idx) => (
-          <div key={idx} className={`message ${msg.sender}`}>{msg.text}</div>
-        ))}
-        {isLoading && <div className="message bot">...</div>}
-      </div>
-      <div className="chatbot-input">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-          disabled={isLoading}
-          placeholder={context ? "Ask about the selected text..." : "Ask a question..."}
-        />
-        <button onClick={handleSend} disabled={isLoading}>Send</button>
-      </div>
-    </div>
-  );
+  try {
+    const result = await askChatbot(userMessage);
+    const botResponse = result?.response || "Sorry, I couldn't get a response.";
+    
+    setChatLog(prev => [...prev, { sender: "bot", text: botResponse }]);
+  } catch (error) {
+    setChatLog(prev => [...prev, { sender: "bot", text: "Error connecting to server." }]);
+    console.error("Frontend caught error:", error);
+  }
 };
 
-export default Chatbot;
+
+
+  
+    return (
+  <div className="chatbot-container">
+    
+
+    {/* Chat messages */}
+    <div className="chatbot-messages">
+      {chatLog.map((msg, idx) => (
+        <div key={idx} className={`message ${msg.sender}`}>
+          {msg.text}
+        </div>
+      ))}
+      <div ref={messagesEndRef} />
+    </div>
+
+    {/* Input */}
+    <div className="chatbot-input">
+      <input
+        type="text"
+        value={message}
+        onChange={e => setMessage(e.target.value)}
+        onKeyDown={e => e.key === "Enter" && handleSend()}
+        placeholder="Type your message..."
+      />
+      <button onClick={handleSend}>Send</button>
+    </div>
+  </div>
+);
+
+  
+}

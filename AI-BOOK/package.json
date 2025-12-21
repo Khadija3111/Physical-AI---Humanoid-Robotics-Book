@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@docusaurus/plugin-content-blog": "^3.9.2",
-    "@docusaurus/plugin-content-docs": "^3.9.2"
+    "@docusaurus/plugin-content-docs": "^3.9.2",
+    "dotenv": "^17.2.3"
   },
   "devDependencies": {
     "docusaurus-pdf": "^1.2.0"

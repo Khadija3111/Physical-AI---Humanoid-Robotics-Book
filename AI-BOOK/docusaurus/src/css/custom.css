@@ -15,8 +15,8 @@
   --ifm-color-primary-lightest: #80bfff;
   --ifm-background-color: #F5F5F5;
   --ifm-font-color-base: #333333;
-  --ifm-navbar-background-color: #C5C7BC; /* Updated for light mode */
-  --ifm-footer-background-color: #C5C7BC; /* Updated for light mode */
+  --ifm-navbar-background-color: #F4F4F4; /* Updated for light mode */
+  --ifm-footer-background-color: #F4F4F4; /* Updated for light mode */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }

@@ -6,13 +6,16 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+
+require('dotenv').config();
+
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-/** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Physical AI & Humanoid Robotics', // More concise title
   tagline: 'Build intelligent robots that interact with the physical world', // More relevant tagline
-  
+
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -43,13 +46,12 @@ const config = {
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          
+
         },
         blog: {
           showReadingTime: true,
@@ -59,7 +61,7 @@ const config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-       
+
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -73,7 +75,6 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
@@ -104,7 +105,7 @@ const config = {
           {
             title: 'Docs',
             items: [
-             
+
             ],
           },
           {
@@ -120,9 +121,9 @@ const config = {
               },
             ],
           },
-        
+
         ],
-       
+
 
         copyright: `Copyright © ${new Date().getFullYear()} My Project ,Build by Khadija .`,
       },
@@ -130,8 +131,8 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-      
     }),
-};
+    themes: [],
+  };
 
 export default config;
